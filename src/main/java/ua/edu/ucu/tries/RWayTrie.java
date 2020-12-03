@@ -28,7 +28,9 @@ public class RWayTrie implements Trie {
     }
 
     private Node put(Node x, String key, int val, int d) {
-        if (x == null) x = new Node();
+        if (x == null) {
+            x = new Node();
+        }
         if (d == key.length()) {
             x.val = val;
             return x;
@@ -53,16 +55,21 @@ public class RWayTrie implements Trie {
     }
 
     private Node delete(Node x, String key, int d) {
-        if (x == null) return null;
-        if (d == key.length())
+        if (x == null) {
+            return null;
+        }
+        if (d == key.length()) {
             x.val = null;
-        else {
+        } else {
             char c = key.charAt(d);
             x.next[c - DIFF] = delete(x.next[c - DIFF], key, d + 1);
         }
-        if (x.val != null) return x;
-        for (char c = 0; c < R; c++)
+        if (x.val != null) {
+            return x;
+        }
+        for (char c = 0; c < R; c++) {
             if (x.next[c] != null) return x;
+        }
         return null;
     }
 
@@ -73,8 +80,12 @@ public class RWayTrie implements Trie {
 
     private Node get(Node x, String key, int d) {
         // Return node associated with key in the subtrie rooted at x.
-        if (x == null) return null;
-        if (d == key.length()) return x;
+        if (x == null) {
+            return null;
+        }
+        if (d == key.length()) {
+            return x;
+        }
         char c = key.charAt(d); // Use dth key char to identify subtrie.
         return get(x.next[c - DIFF], key, d + 1);
     }
@@ -95,8 +106,12 @@ public class RWayTrie implements Trie {
     }
 
     private void collect(Node x, String pre, Queue q) {
-        if (x == null) return;
-        if (x.val != null) q.enqueue(pre);
+        if (x == null) {
+            return;
+        }
+        if (x.val != null) {
+            q.enqueue(pre);
+        }
         for (char c = DIFF; c < DIFF + R; c++) {
             collect(x.next[c - DIFF], pre + c, q);
         }
