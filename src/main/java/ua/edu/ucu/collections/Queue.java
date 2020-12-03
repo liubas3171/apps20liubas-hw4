@@ -23,7 +23,6 @@ public class Queue {
         list = list.addFirst(e);
     }
 
-    //TODO
     public boolean isEmpty() {
         return list.isEmpty();
     }
