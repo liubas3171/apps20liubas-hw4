@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class PrefixMatches {
-
+    private final int NORM_SIZE = 3;
     private Trie trie;
 
     public PrefixMatches(Trie trie) {
@@ -43,11 +43,12 @@ public class PrefixMatches {
     }
 
     public Iterable<String> wordsWithPrefix(String pref, int k) {
-        int lenWord;
+        int lenWord = NORM_SIZE;
         if (pref.length() < 2) {
             throw new IllegalArgumentException("pref.len < 2");
-        } else if (pref.length() == 2) lenWord = 3;
-        else lenWord = pref.length();
+        } else if (pref.length() > 2) {
+            lenWord = pref.length();
+        }
 
         ArrayList<String> result = new ArrayList<>();
         Iterable<String> wordsWithPrefix = wordsWithPrefix(pref);
