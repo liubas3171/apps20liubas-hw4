@@ -68,7 +68,9 @@ public class RWayTrie implements Trie {
             return x;
         }
         for (char c = 0; c < R; c++) {
-            if (x.next[c] != null) return x;
+            if (x.next[c] != null) {
+                return x;
+            }
         }
         return null;
     }
@@ -123,11 +125,16 @@ public class RWayTrie implements Trie {
     }
 
     private int size(Node x) {
-        if (x == null) return 0;
+        if (x == null) {
+            return 0;
+        }
         int res = 0;
-        if (x.val != null) res++;
-        for (char c = 0; c < R; c++)
+        if (x.val != null) {
+            res++;
+        }
+        for (char c = 0; c < R; c++) {
             res += size(x.next[c]);
+        }
         return res;
     }
 
